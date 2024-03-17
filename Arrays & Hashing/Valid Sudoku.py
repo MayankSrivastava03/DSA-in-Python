@@ -1,4 +1,26 @@
 class Solution:
+    # Optimal Solution
+    def isValidSudoku(self,board:List[List]) -> bool:
+        st = set()
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    continue
+                row = f"{board[i][j]}_ROW_{i}"
+                col = f"{board[i][j]}_COL_{j}"
+                box = f"{board[i][j]}_BOX_{i//3}_{j//3}"
+                if row in st or col in st or box in st:
+                    return False
+                st.add(row)
+                st.add(col)
+                st.add(box)
+        return True
+
+
+# Loop Solution
+
+'''
+class Solution:
     def traverse(self, board: List[List[str]], sr: int, er: int, sc: int, ec: int) -> bool:
         check = set()
         for i in range(sr, er):
@@ -35,3 +57,5 @@ class Solution:
                     return False
 
         return True
+
+'''
